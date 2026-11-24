@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday, Misis ko 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--blush:#fff0f5;--petal:#ffd6e5;--rose:#ff7eb0;--deep:#d6336c;--wine:#7a1f45;--gold:#e8b4a0}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;color:var(--wine);background:linear-gradient(180deg,var(--blush),#ffe3ee 50%,var(--blush));line-height:1.7;overflow-x:hidden}
+h1,h2{font-family:'Parisienne',cursive;font-weight:400;color:var(--deep);line-height:1.1}
+h2{font-size:clamp(2.4rem,8vw,3.6rem);text-align:center;margin-bottom:.4em}
+section{max-width:960px;margin:0 auto;padding:72px 20px}
+.sub{text-align:center;opacity:.8;margin:-6px 0 32px}
+button{font:inherit;cursor:pointer;border:0}
+:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:50}
+.float{position:fixed;bottom:-40px;font-size:20px;opacity:.5;animation:up linear forwards;pointer-events:none;z-index:1}
+@keyframes up{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+
+/* gift gate */
+#gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 40%,#fff,var(--petal));transition:opacity .8s,visibility .8s}
+#gate.gone{opacity:0;visibility:hidden}
+#gift{background:none;font-size:clamp(110px,32vw,170px);line-height:1;animation:bob 1.8s ease-in-out infinite;filter:drop-shadow(0 14px 18px rgba(214,51,108,.3))}
+#gate p{font-family:'Parisienne',cursive;font-size:2rem;color:var(--deep);margin-top:10px}
+#gate small{display:block;opacity:.7}
+@keyframes bob{50%{transform:translateY(-14px) rotate(-4deg)}}
+#gift.pop{animation:pop .5s forwards}
+@keyframes pop{to{transform:scale(1.8) rotate(12deg);opacity:0}}
+
+/* hero */
+.hero{min-height:100svh;display:grid;place-content:center;text-align:center;padding:40px 20px}
+.hero .hb{font-size:clamp(3.4rem,15vw,7.5rem);background:linear-gradient(120deg,var(--deep),var(--rose),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;padding:0 .1em .1em}
+.hero .name{font-family:'Parisienne',cursive;font-size:clamp(2.4rem,10vw,4.6rem);color:var(--wine)}
+.age{display:inline-block;margin:18px auto 0;background:var(--rose);color:#fff;font-weight:800;padding:8px 26px;border-radius:99px;box-shadow:0 8px 20px rgba(255,126,176,.45);font-size:1.2rem}
+.scroll{margin-top:36px;opacity:.7;animation:bob 2s infinite}
+
+/* letter */
+.paper{background:#fffafc;border:2px solid var(--petal);border-radius:22px;padding:clamp(24px,6vw,48px);box-shadow:0 18px 40px rgba(214,51,108,.15);position:relative}
+.paper::before{content:"💌";position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:40px}
+.paper p{margin-bottom:1.1em;font-size:1.05rem}
+.paper .sign{font-family:'Parisienne',cursive;font-size:2rem;color:var(--deep);text-align:right;margin:0}
+.paper .big{font-weight:800;color:var(--deep);word-break:break-word}
+
+/* polaroids */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px 22px}
+.pol{background:#fff;padding:12px 12px 16px;border-radius:6px;box-shadow:0 10px 24px rgba(122,31,69,.18);transform:rotate(var(--r));transition:transform .3s}
+.pol:hover{transform:rotate(0) scale(1.04)}
+.pol .ph{aspect-ratio:1;border-radius:3px;overflow:hidden;background:linear-gradient(135deg,var(--petal),#ffc2da);display:grid;place-items:center;font-size:48px}
+.pol img{width:100%;height:100%;object-fit:cover}
+.pol figcaption{font-family:'Parisienne',cursive;font-size:1.5rem;text-align:center;margin-top:10px;color:var(--deep)}
+
+/* flip cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.flip{perspective:800px;background:none;aspect-ratio:1/1.1}
+.in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d;display:block}
+.flip.on .in{transform:rotateY(180deg)}
+.f,.b{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:grid;place-items:center;padding:14px;text-align:center}
+.f{background:linear-gradient(145deg,var(--rose),var(--deep));color:#fff;font-size:2.4rem;box-shadow:0 10px 22px rgba(214,51,108,.3)}
+.f span{display:block;font-size:.85rem;font-weight:800;margin-top:4px}
+.b{background:#fff;border:2px solid var(--rose);transform:rotateY(180deg);font-weight:600;font-size:.95rem;color:var(--wine)}
+
+/* coupons */
+.coupons{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.cp{display:flex;align-items:center;gap:14px;text-align:left;background:#fff;border:2px dashed var(--rose);border-radius:16px;padding:16px 18px;color:var(--wine);position:relative;transition:.3s}
+.cp .e{font-size:2rem}
+.cp b{display:block;color:var(--deep)}
+.cp small{opacity:.75}
+.cp.used{opacity:.55;border-style:solid;background:var(--petal)}
+.cp.used::after{content:"REDEEMED 💗";position:absolute;right:12px;top:50%;transform:translateY(-50%) rotate(-10deg);border:2px solid var(--deep);color:var(--deep);font-weight:800;padding:2px 8px;border-radius:6px;font-size:.8rem;background:#fff}
+
+/* cake */
+.cake{width:260px;margin:50px auto 0;position:relative}
+.candles{display:flex;justify-content:space-around;padding:0 34px;height:70px;align-items:flex-end}
+.candle{background:none;width:20px;height:50px;position:relative}
+.candle i{position:absolute;bottom:0;left:3px;width:14px;height:36px;border-radius:3px;background:repeating-linear-gradient(45deg,#fff 0 6px,var(--rose) 6px 12px)}
+.candle u{position:absolute;top:-8px;left:3px;width:14px;height:22px;background:radial-gradient(ellipse at 50% 70%,#fff3a0,#ffb300 60%,transparent 72%);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:fl .3s alternate infinite;transform-origin:50% 100%}
+.candle.out u{display:none}
+.candle.out::after{content:"";position:absolute;top:-30px;left:8px;width:4px;height:24px;background:linear-gradient(#9996,transparent);animation:sm 1.6s forwards}
+@keyframes fl{to{transform:scale(1.1,.92) rotate(3deg)}}
+@keyframes sm{to{transform:translateY(-30px);opacity:0}}
+.tier{height:52px;border-radius:14px 14px 6px 6px;position:relative}
+.t1{background:var(--petal);width:70%;margin:0 auto;box-shadow:inset 0 -12px 0 #fff}
+.t2{background:var(--rose);box-shadow:inset 0 -14px 0 #fff;height:64px}
+.t3{background:var(--deep);width:112%;margin-left:-6%;box-shadow:inset 0 -14px 0 #fff;height:64px}
+.plate{height:14px;width:130%;margin-left:-15%;border-radius:50%;background:#fff;box-shadow:0 8px 14px rgba(0,0,0,.12)}
+#wish{text-align:center;min-height:60px;margin-top:26px;font-family:'Parisienne',cursive;font-size:2.2rem;color:var(--deep)}
+
+footer{text-align:center;padding:40px 20px 90px;opacity:.8}
+
+/* music */
+#mus{position:fixed;right:16px;bottom:16px;z-index:60;width:54px;height:54px;border-radius:50%;background:var(--deep);color:#fff;font-size:22px;box-shadow:0 8px 18px rgba(214,51,108,.45)}
+#mus.play{animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+
+<div id="gate">
+  <div>
+    <button id="gift" aria-label="Open your gift">🎁</button>
+    <p>Tap to open your gift, Misis ko 💗</p>
+    <small>(may sound po, ha)</small>
+  </div>
+</div>
+
+<main>
+<header class="hero">
+  <h1 class="hb">Happy Birthday</h1>
+  <div class="name">Misis ko 💗</div>
+  <div><span class="age">22 na si baby! 🎂</span></div>
+  <div class="scroll">scroll down po ↓</div>
+</header>
+
+<section>
+  <h2>A letter for you</h2>
+  <div class="paper" id="letter"></div>
+</section>
+
+<section>
+  <h2>Us, in pictures</h2>
+  <p class="sub">my favorite memories with you</p>
+  <div class="grid" id="pics"></div>
+</section>
+
+<section>
+  <h2>Reasons I love you</h2>
+  <p class="sub">tap a card, misis ko</p>
+  <div class="cards" id="cards"></div>
+</section>
+
+<section>
+  <h2>Coupon book</h2>
+  <p class="sub">tap to redeem, valid forever 💌</p>
+  <div class="coupons" id="coupons"></div>
+</section>
+
+<section>
+  <h2>Make a wish</h2>
+  <p class="sub">tap the candles to blow them out</p>
+  <div class="cake">
+    <div class="candles" id="candles"></div>
+    <div class="tier t1"></div><div class="tier t2"></div><div class="tier t3"></div><div class="plate"></div>
+  </div>
+  <div id="wish" aria-live="polite"></div>
+</section>
+</main>
+
+<footer>Made with all my love, for you 💗<br>— your mister</footer>
+
+<button id="mus" aria-label="Play or pause music">🎵</button>
+<audio id="song" src="music.mp3" loop preload="none"></audio>
+
+<script>
+/* ============ EDIT THESE ============ */
+const PHOTOS=[ // put files in the "photos" folder: 1.jpg, 2.jpg ...
+ ["photos/1.jpg","first picture natin 🥹"],
+ ["photos/2.jpg","my favorite smile"],
+ ["photos/3.jpg","us, always"],
+ ["photos/4.jpg","kulitan moments"],
+ ["photos/5.jpg","masayang araw"],
+ ["photos/6.jpg","forever na ba 'to?"]
+];
+const REASONS=[
+ "Ang sipag at talino mo, nakakaproud!","Your smile fixes my whole day","Lagi mo akong inuunawa",
+ "Ang cute mo kahit pagod ka na","You make ordinary days feel special","Ang bait ng heart mo",
+ "Ikaw ang peaceful place ko","Because ikaw si Misis ko 💗"
+];
+const COUPONS=[
+ ["🍽️","Dinner date","your choice of place, my treat"],
+ ["🎬","Movie night","you pick the movie, I bring snacks"],
+ ["🤗","Unlimited hugs","valid anytime, any place"],
+ ["💆","Back massage","no expiration po"],
+ ["🍦","Ice cream run","kahit anong flavor"],
+ ["🙏","One 'Sorry, misis ko' pass","a free pass, use wisely hehe"]
+];
+const LETTER=[
+ "Happy Happy Birthday misis kong magandaa!! you are 22 na babyy hahahahh more birthdays to come poo babyyy!! I know right know po is marami ka pong iniisip and ginagawa dahil sa school works mo pero that wont stop me from wanting to greet and celebrate your birthday babyyy!! after po ng research mo na yan baby, lets celebrate to the fullest poo!!",
+ "Alam ko po na marami ka po ginagawa ngayon and i am very very proud of you so much mahal! You are so sipag and so talino! Super galing moo babyyy! nakakaprouddd!! I cannot wait to hug you and kiss youuuu!!",
+ "Baby remember po that I am always here po ha, no matter how busy you get po, andito lang po ako. I am always gonna be here proud of you and loving you endlessly.",
+ "<span class='big'>"+Array(15).fill("Mahal na").join(" ")+" Mahal kitang sobrang sobraaaa super duperrr ultra mega super sonic omsim matikkk!!!</span>",
+ "Tomorrow po baby sana makapag kita po tayo kahit na alam kong super busy mo po huhuhu, I love you so much misis kong maganda! You are the most amazing girlfriend everrr! You are the besttt! You are the most beautiful misis kooo!! Super duper kitang loveeee!!",
+ "I have a small gift for you baby and I hope you’ll like it poo! Happy Happy Birthdayy again baby koooo!!!",
+ "<span class='big'>"+Array(16).fill("Mwa").join(" ")+" Mwaaaa Mwaaaaaa Mwaaaaaaa Mwaaaaaaaaaa!!!!</span>"
+];
+/* ==================================== */
+
+const $=s=>document.querySelector(s);
+$('#letter').innerHTML=LETTER.map(t=>`<p>${t}</p>`).join("")+`<p class="sign">Love, your mister 💗</p>`;
+$('#pics').innerHTML=PHOTOS.map((p,i)=>`<figure class="pol" style="--r:${[-3,2,-1.5,3,-2.5,1.5][i%6]}deg"><div class="ph">💗<img src="${p[0]}" alt="${p[1]}" style="position:absolute;opacity:0" onload="this.style.position='static';this.style.opacity=1;this.parentNode.firstChild.textContent=''"></div><figcaption>${p[1]}</figcaption></figure>`).join("");
+$('#cards').innerHTML=REASONS.map(r=>`<button class="flip" aria-label="Reveal a reason"><span class="in"><span class="f">💗<span>tap me</span></span><span class="b">${r}</span></span></button>`).join("");
+$('#coupons').innerHTML=COUPONS.map(c=>`<button class="cp"><span class="e">${c[0]}</span><span><b>${c[1]}</b><small>${c[2]}</small></span></button>`).join("");
+document.querySelectorAll('.flip').forEach(b=>b.onclick=()=>b.classList.toggle('on'));
+document.querySelectorAll('.cp').forEach(b=>b.onclick=()=>{b.classList.toggle('used');if(b.classList.contains('used'))burst(innerWidth/2,innerHeight/2,40)});
+
+/* candles */
+const cd=$('#candles');
+for(let i=0;i<5;i++){cd.insertAdjacentHTML('beforeend','<button class="candle" aria-label="Blow out candle"><u></u><i></i></button>')}
+document.querySelectorAll('.candle').forEach(c=>c.onclick=()=>{
+  c.classList.add('out');
+  if(!document.querySelector('.candle:not(.out)')){
+    $('#wish').textContent="Sana matupad lahat ng wish mo, misis ko 💗";
+    burst(innerWidth/2,innerHeight/2,160);
+  }
+});
+
+/* confetti + floating hearts */
+const cv=$('#fx'),cx=cv.getContext('2d');let P=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener('resize',size);
+const COL=['#ff7eb0','#d6336c','#ffd6e5','#e8b4a0','#fff','#ffb3d1'];
+function burst(x,y,n){for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=4+Math.random()*9;P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,c:COL[i%COL.length],r:Math.random()*6,w:4+Math.random()*6,h:Math.random()<.35,l:140})}if(P.length==n)tick()}
+function tick(){cx.clearRect(0,0,cv.width,cv.height);P=P.filter(p=>p.l>0);
+  P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.25;p.vx*=.99;p.r+=.2;p.l--;cx.globalAlpha=Math.min(1,p.l/40);cx.fillStyle=p.c;
+    if(p.h){cx.font=p.w*3+'px serif';cx.fillText('💗',p.x,p.y)}else{cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()}});
+  if(P.length)requestAnimationFrame(tick)}
+setInterval(()=>{if(document.hidden||$('#gate:not(.gone)'))return;const h=document.createElement('div');h.className='float';h.textContent=['💗','💕','🌸','✨'][Math.random()*4|0];h.style.left=Math.random()*100+'vw';h.style.animationDuration=(7+Math.random()*6)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),13000)},1400);
+
+/* music */
+const song=$('#song'),mus=$('#mus');
+function setPlay(on){mus.classList.toggle('play',on)}
+mus.onclick=()=>{song.paused?song.play().then(()=>setPlay(true)).catch(()=>{}):(song.pause(),setPlay(false))};
+
+/* gate */
+$('#gift').onclick=e=>{
+  e.currentTarget.classList.add('pop');
+  burst(innerWidth/2,innerHeight/2,180);
+  song.play().then(()=>setPlay(true)).catch(()=>{});
+  setTimeout(()=>$('#gate').classList.add('gone'),450);
+};
+</script>
+</body>
+</html>
