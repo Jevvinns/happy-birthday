@@ -89,6 +89,13 @@ button{font:inherit;cursor:pointer;border:0}
 .plate{height:14px;width:130%;margin-left:-15%;border-radius:50%;background:#fff;box-shadow:0 8px 14px rgba(0,0,0,.12)}
 #wish{text-align:center;min-height:60px;margin-top:26px;font-family:'Parisienne',cursive;font-size:2.2rem;color:var(--deep)}
 
+.bqb{display:block;margin:0 auto;background:none;color:var(--deep);font-weight:800;text-align:center}
+.bqb svg{width:min(300px,80vw);height:auto;display:block;margin:0 auto 8px}
+.bl{transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .8s cubic-bezier(.3,1.6,.5,1)}
+.lv,#bq path[stroke]{transition:opacity .6s;opacity:.0}
+#bq.on .bl{transform:scale(1)}
+#bq.on .lv,#bq.on g[stroke]{opacity:1}
+#bq g[stroke]{opacity:0;transition:opacity .6s}
 footer{text-align:center;padding:40px 20px 90px;opacity:.8}
 
 /* music */
@@ -149,6 +156,18 @@ footer{text-align:center;padding:40px 20px 90px;opacity:.8}
   </div>
   <div id="wish" aria-live="polite"></div>
 </section>
+<section>
+  <h2>A bouquet for you</h2>
+  <p class="sub">kasi bagay sa'yo ang bulaklak, misis ko</p>
+  <button id="bloom" class="bqb" aria-label="Make the flowers bloom"><svg id="bq" viewBox="0 0 300 350" role="img" aria-label="A bouquet of pink flowers">
+<defs><g id="fl"><g fill="currentColor"><ellipse cy="-15" rx="10" ry="16"/><ellipse cy="-15" rx="10" ry="16" transform="rotate(72)"/><ellipse cy="-15" rx="10" ry="16" transform="rotate(144)"/><ellipse cy="-15" rx="10" ry="16" transform="rotate(216)"/><ellipse cy="-15" rx="10" ry="16" transform="rotate(288)"/></g><circle r="8" fill="#ffe08a"/></g></defs>
+<g fill="none" stroke="#5f9f6e" stroke-width="4" stroke-linecap="round"><path d="M150 70 Q150 195 150 285"/><path d="M95 110 Q122 215 150 285"/><path d="M205 110 Q177 215 150 285"/><path d="M60 170 Q105 245 150 285"/><path d="M240 170 Q195 245 150 285"/><path d="M112 175 Q131 247 150 285"/><path d="M188 175 Q169 247 150 285"/></g>
+<g class="lv" fill="#7fbf8a"><ellipse cx="105" cy="235" rx="9" ry="22" transform="rotate(-50 105 235)"/><ellipse cy="235" cx="195" rx="9" ry="22" transform="rotate(50 195 235)"/></g>
+<g class="bl" style="transition-delay:0.00s"><use href="#fl" transform="translate(150 70) scale(1.25)" style="color:#ff5c9a"/></g><g class="bl" style="transition-delay:0.15s"><use href="#fl" transform="translate(95 110) scale(1.05)" style="color:#ffb3d1"/></g><g class="bl" style="transition-delay:0.30s"><use href="#fl" transform="translate(205 110) scale(1.05)" style="color:#ff7eb0"/></g><g class="bl" style="transition-delay:0.45s"><use href="#fl" transform="translate(60 170) scale(0.9)" style="color:#ffd6e5"/></g><g class="bl" style="transition-delay:0.60s"><use href="#fl" transform="translate(240 170) scale(0.9)" style="color:#ff5c9a"/></g><g class="bl" style="transition-delay:0.75s"><use href="#fl" transform="translate(112 175) scale(1.1)" style="color:#d6336c"/></g><g class="bl" style="transition-delay:0.90s"><use href="#fl" transform="translate(188 175) scale(1.1)" style="color:#ffb3d1"/></g>
+<path d="M100 245 L200 245 L170 335 L130 335Z" fill="#ffd6e5" stroke="#ff7eb0" stroke-width="3" stroke-linejoin="round"/>
+<path d="M150 285 L128 270 L128 300Z M150 285 L172 270 L172 300Z" fill="#d6336c"/><circle cx="150" cy="285" r="7" fill="#7a1f45"/>
+</svg><span>tap to bloom 🌷</span></button>
+</section>
 </main>
 
 <footer>Made with all my love, for you 💗<br>— your mister</footer>
@@ -172,12 +191,12 @@ const REASONS=[
  "Ikaw ang peaceful place ko","Because ikaw si Misis ko 💗"
 ];
 const COUPONS=[
- ["🍽️","Fancy date","your choice of place, my treat"],
+ ["🍽️","Dinner date","your choice of place, my treat"],
  ["🎬","Movie night","you pick the movie, I bring snacks"],
  ["🤗","Unlimited hugs","valid anytime, any place"],
  ["💆","Back massage","no expiration po"],
  ["🍦","Ice cream run","kahit anong flavor"],
- ["🙏","The greatest soultie","use wisely hehe"]
+ ["🙏","One 'Sorry, misis ko' pass","a free pass, use wisely hehe"]
 ];
 const LETTER=[
  "Happy Happy Birthday misis kong magandaa!! you are 22 na babyy hahahahh more birthdays to come poo babyyy!! I know right know po is marami ka pong iniisip and ginagawa dahil sa school works mo pero that wont stop me from wanting to greet and celebrate your birthday babyyy!! after po ng research mo na yan baby, lets celebrate to the fullest poo!!",
@@ -225,6 +244,8 @@ const song=$('#song'),mus=$('#mus');
 function setPlay(on){mus.classList.toggle('play',on)}
 mus.onclick=()=>{song.paused?song.play().then(()=>setPlay(true)).catch(()=>{}):(song.pause(),setPlay(false))};
 
+const bq=$('#bq');$('#bloom').onclick=()=>{const on=bq.classList.toggle('on');if(on){const r=bq.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/3,70)}};
+new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){setTimeout(()=>bq.classList.add('on'),400);o.disconnect()}},{threshold:.6}).observe(bq);
 /* gate */
 $('#gift').onclick=e=>{
   e.currentTarget.classList.add('pop');
